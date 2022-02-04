@@ -34,6 +34,11 @@ vue add vuetify
 vue add electron-builder
 ```
 
+### Encryption
+
+The contact data is encrypted using the `crypto.js` implementation of the AES 192 CBC encryption algorithm with a randomly generated IV and utilizing a
+SHA25 hash of the user's password as the encryption key.
+
 ## Code Pattern
 
 ### Domain Driven Design (DDD)
@@ -109,5 +114,6 @@ If you want to create a default account with 20 pre-generated contacts, run the 
 `yarn setup-default-account`. The account will be created with the password `Password1234!`
 
 #### Tests
+
 To run the jest test suite run
 `yarn test`
