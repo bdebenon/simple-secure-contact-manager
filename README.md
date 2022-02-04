@@ -1,8 +1,8 @@
-# Radix Coding Challenge
+# Simple Secure Contact Manager
 
 ## About
 
-The purpose of this application is to store an encrypted list of contacts
+The Simple Secure Contact Manager allows a user to securely manage their contact list.
 
 ## Application Overview
 
