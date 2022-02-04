@@ -37,7 +37,7 @@
             text
             @click="openPasswordResetDialogue"
         >
-          Reset Password/Account
+          Create New Account/Reset Password
         </v-btn>
         <v-btn
             outlined
@@ -56,7 +56,7 @@
     >
       <v-card v-if="!passwordWasJustReset">
         <v-card-title class="text-h5 grey lighten-2">
-          Reset Password/Account
+          Create New Account/Reset Password
         </v-card-title>
 
         <v-card-text>
@@ -98,7 +98,7 @@
       </v-card>
       <v-card v-else>
         <v-card-title class="text-h5 grey lighten-2">
-          Reset Password/Account
+          Create New Account/Reset Password
         </v-card-title>
 
         <v-card-text>

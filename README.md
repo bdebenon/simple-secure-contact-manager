@@ -8,7 +8,7 @@ The Simple Secure Contact Manager allows a user to securely manage their contact
 
 ### Demo
 
-TODO: INSERT GIF HERE
+![Alt Text](demo.gif)
 
 ### Features
 
@@ -106,5 +106,8 @@ yarn electron:build
 #### Creating Default Account & Contacts
 
 If you want to create a default account with 20 pre-generated contacts, run the following
-`jest --testNamePattern getContactList`. The account will be created with the password `Password1234!`
+`yarn setup-default-account`. The account will be created with the password `Password1234!`
 
+#### Tests
+To run the jest test suite run
+`yarn test`
