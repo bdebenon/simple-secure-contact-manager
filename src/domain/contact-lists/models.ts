@@ -1,4 +1,5 @@
-import {Contact} from "../contacts/models";
+import {Contact} from "@/domain/contacts/models";
+import {jsonReviver} from "@/common/utils";
 
 interface ContactListParameters {
     contacts: Map<string, Contact>;
@@ -29,33 +30,32 @@ export class ContactList implements ContactListParameters {
         this.contacts.delete(contactUUID)
     }
 
-    toJSON() {
-        const contactJSONs: string[] = []
-        this.contacts.forEach((value: Contact, key: string) => {
-            contactJSONs.push(JSON.stringify(value))
-        });
-        return {
-            contacts: contactJSONs
-        }
+    static emptyContactList() {
+        let contacts = new Map<string, Contact>()
+        return new ContactList({
+            contacts: contacts
+        })
     }
 
     static fromJSONString(jsonString: string): ContactList {
-        const contactListJSON = JSON.parse(jsonString);
-
+        const contactListJSON = JSON.parse(jsonString, jsonReviver);
         const contacts: Map<string, Contact> = new Map<string, Contact>()
-        contactListJSON.contacts.forEach((value: string, key: string) => {
-            const contactJSON = JSON.parse(value)
-            const contact = new Contact({
-                uuid: contactJSON.uuid,
-                firstName: contactJSON.firstName,
-                middleName: contactJSON.middleName,
-                lastName: contactJSON.lastName,
-                phoneNumber: contactJSON.phoneNumber,
-                emailAddress: contactJSON.emailAddress,
-                homeAddress: contactJSON.homeAddress
-            })
-            contacts.set(contact.uuid, contact)
-        });
+        const contactListIsEmpty = contactListJSON.contacts.size === 0
+
+        if (!contactListIsEmpty) {
+            contactListJSON.contacts.forEach((value: Contact, key: string) => {
+                const contact = new Contact({
+                    uuid: value.uuid,
+                    firstName: value.firstName,
+                    middleName: value.middleName,
+                    lastName: value.lastName,
+                    phoneNumber: value.phoneNumber,
+                    emailAddress: value.emailAddress,
+                    homeAddress: value.homeAddress
+                })
+                contacts.set(contact.uuid, contact)
+            });
+        }
 
         const contactList = new ContactList({
             contacts: contacts
@@ -63,3 +63,4 @@ export class ContactList implements ContactListParameters {
         return contactList
     }
 }
+

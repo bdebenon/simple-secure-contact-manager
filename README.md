@@ -1,46 +1,91 @@
 # Radix Coding Challenge
 
-## Conventions
+## About
 
-- filenames: kebab-case
-- folder names: kebab-case
-- test cases:
-  - <filename>.unit.ts
-  - <filename>.integration.ts
+The purpose of this application is to store an encrypted list of contacts
 
 ## Application Overview
 
-### Capabilities
+### Demo
 
-This application has the following capabilities:
+TODO: INSERT GIF HERE
 
-- access to application data controlled by password
-- decrypt and load contact file from disk, or create new file if none existing
-- be able to detect if the correct password was used without displaying corrupted or garbage data
-- add new contacts
-- edit existing contacts
-- search contacts by any field
-- write encrypted modified contacts datafile to disk
+### Features
+
+- Reset encryption password
+- Add new contact
+- Update existing contact
+- Lookup a specific contact via its information
 
 ### User Interface
 
-The user interface for this project is powered by Electron
+The user interface for this project is powered by
 
-https://www.electronjs.org/
+- Electron: https://www.electronjs.org/
+- VueJS: https://vuejs.org/
+- Vuetify: https://vuetifyjs.com/en/
 
-## Running the app
+#### The following commands were run to generate the stub code for ElectronJS/Vue/Vuetify
 
-#### Note about the project
-The following commands were run to generate the stub code for ElectronJS/Vue/Vuetify
 ```bash
 npm install -g @vue/cli
 vue create simple-secure-contact-manager
 vue add vuetify
 vue add electron-builder
 ```
-These do not need to be run again - just here for reference
+
+## Code Pattern
+
+### Domain Driven Design (DDD)
+
+We are utilizing a DDD style approach for the code pattern in this project.
+
+DDD focuses on converting the business requirements of the application into models that can be used by multiple layers
+of application code.
+
+We have 3 layers: `Domain`, `Infra`, and `Service`.
+
+#### Domain
+
+The Domain layers holds models and use cases which represent real life concepts and actions.
+
+A domain model aims to codify a real life object.
+
+A domain use case aims to codify a use case involving a particular domain model.
+
+#### Infra
+
+The Infra layer allows us to use domain models to interact with the infrastructure layer.
+
+A repository provides an abstraction for performing infrastrucutre operations in terms of domain models. For example, we
+can store and retrieve `ContactList` models to disk using the `LocalFileContactListsRepository`.
+
+#### Service
+
+The Service layer contains the application code which interacts with the Infra & Domain layers. In our case, the Service
+layer is where ElectronJS/VueJS lives.
+
+### File Conventions
+
+- filenames: kebab-case
+- folder names: kebab-case
+- test cases:
+    - FILENAME.unit.ts
+    - FILENAME.integration.ts
+
+## Running the app
 
 ### Project setup
+
+#### Datafile Path
+
+By default, the datafile will be saved to your home directory as `radix_data_file`.
+
+Alternatively, the path can be overridden in `src/configs/config.json` with the `customDatafilePath` field.
+
+Example: `"customDatafilePath": "~/custom_path_radix_data_file"`
+
+#### Install Dependencies
 
 ```
 yarn install
@@ -58,43 +103,8 @@ yarn electron:serve
 yarn electron:build
 ```
 
-# TODO
+#### Creating Default Account & Contacts
 
-Could someone use the
+If you want to create a default account with 20 pre-generated contacts, run the following
+`jest --testNamePattern getContactList`. The account will be created with the password `Password1234!`
 
-- Common
-    - [x] config
-- Domain
-    - [x] contact
-        - first name
-        - last name
-        - middle name
-        - phone number
-        - email address
-        - address
-    - [x] contact list
-        - [x] models
-        - [x] searchForContactUseCase
-        - [x] add contact
-        - [x] replace contact
-        - [x] delete contact
-    - [x] user
-        - passwordHash
-        - [x] createUserFromPassword
-
-- Infra
-    - [x] common
-        - [x] encryptFile
-        - [x] decryptFile
-    - [x] contact list
-        - [x] get contact list
-        - [x] store contact list
-- Service (Do we need any of this shit below besides the electron stuff?)
-    - [] views
-        - TODO: Add electron views
-
-- Misc
-    - [x] Fix imports
-    - [] Write build instructions
-    - [] Cleanup readme
-    - [x] Cleanup dependencies 

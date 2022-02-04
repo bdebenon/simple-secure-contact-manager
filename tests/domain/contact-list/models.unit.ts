@@ -1,7 +1,13 @@
 import {ContactListFaker} from "@/domain/contact-lists/faker";
 import {ContactFaker} from "@/domain/contacts/faker";
+import {ContactList} from "@/domain/contact-lists/models";
 
 describe('contact list model.ts', () => {
+    it('should create an empty ContactList ', () => {
+        const contactList = ContactList.emptyContactList()
+        expect(typeof contactList).toBe('object')
+    })
+
     it('should create a ContactList using ContactListFaker without specifying how many to make', () => {
         const contactList = new ContactListFaker().contactList()
         for (let contact of contactList.contacts.values()) {
@@ -45,7 +51,7 @@ describe('contact list model.ts', () => {
         })
     })
 
-    describe('updateContact()', () => {
+    describe('updateContact', () => {
         it('should create a contact list with 1 contact then update that contact and check that it was updated0',
             () => {
                 const numberOfContacts = 1

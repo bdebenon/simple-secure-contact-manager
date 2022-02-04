@@ -1,20 +1,19 @@
-import {createHash, Hash} from 'crypto'
+import {createHmac} from 'crypto'
 
 
 interface UserParameters {
-    passwordHash: Hash;
+    passwordHash: string;
 }
 
 export class User implements UserParameters {
-    passwordHash: Hash; // We use the passwordHash as our encryption key
+    passwordHash: string; // We use the passwordHash as our encryption key
 
     constructor(params: UserParameters) {
         this.passwordHash = params.passwordHash
     }
 
     static createUserFromPassword(password: string): User {
-        const passwordHash = createHash('sha256')
-        passwordHash.update(password).digest('base64');
+        const passwordHash = createHmac('sha256', password).digest('hex');
         return new User(
             {
                 passwordHash: passwordHash

@@ -1,8 +1,8 @@
 // @ts-ignore
 import faker from 'faker';
-import {ContactFaker} from "../contacts/faker";
-import {Contact} from "../contacts/models";
-import {ContactList} from "./models";
+import {ContactFaker} from "@/domain/contacts/faker";
+import {Contact} from "@/domain/contacts/models";
+import {ContactList} from "@/domain/contact-lists/models";
 
 
 interface ContactListFakerParameters {
