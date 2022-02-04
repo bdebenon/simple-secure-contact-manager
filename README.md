@@ -78,7 +78,9 @@ layer is where ElectronJS/VueJS lives.
     - FILENAME.unit.ts
     - FILENAME.integration.ts
 
-## Running the app
+## Running the Application
+
+This project has been tested on Ubuntu 20.04.3 LTS 
 
 ### Project setup
 

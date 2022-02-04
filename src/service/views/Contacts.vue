@@ -91,7 +91,10 @@
           <p><span class="font-weight-bold">Last Name:</span> {{ selectedContact.lastName }}</p>
           <p><span class="font-weight-bold">Phone:</span> {{ selectedContact.phoneNumber }}</p>
           <p><span class="font-weight-bold">Email:</span> {{ selectedContact.emailAddress }}</p>
-          <p><span class="font-weight-bold">Home Address:</span> {{ selectedContact.homeAddress }}</p>
+          <p><span class="font-weight-bold">Home Address:</span>
+            <br/>
+            <span style="white-space: pre-line">{{ selectedContact.homeAddress }}</span>
+          </p>
         </v-card-text>
         <v-card-actions>
           <v-btn
@@ -135,8 +138,7 @@
               >
                 <v-text-field
                     v-model="firstName"
-                    label="First Name*"
-                    required
+                    label="First Name"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -146,8 +148,7 @@
               >
                 <v-text-field
                     v-model="middleName"
-                    label="Middle Name*"
-                    required
+                    label="Middle Name"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -157,34 +158,29 @@
               >
                 <v-text-field
                     v-model="lastName"
-                    label="Last Name*"
-                    required
+                    label="Last Name"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
                     v-model="phoneNumber"
-                    label="Phone Number*"
-                    required
+                    label="Phone Number"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
                     v-model="emailAddress"
-                    label="Email Address*"
-                    required
+                    label="Email Address"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field
+                <v-textarea
                     v-model="homeAddress"
-                    label="Home Address*"
-                    required
-                ></v-text-field>
+                    label="Home Address"
+                ></v-textarea>
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
